@@ -1,5 +1,12 @@
 package com.tele;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@ToString
+@Setter
+@Getter
 class Box {
 
     private boolean user, price, host;
@@ -42,15 +49,5 @@ class Box {
 
     public void setCount(int count) {
         this.count = count;
-    }
-
-    @Override
-    public String toString() {
-        return "Box{" +
-                "user=" + user +
-                ", price=" + price +
-                ", host=" + host +
-                ", count=" + count +
-                '}';
     }
 }

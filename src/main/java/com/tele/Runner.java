@@ -41,11 +41,9 @@ class Runner {
      * @throws IOException
      */
     private void play(Set<Box> boxes) throws IOException {
-        System.out.println("Please choose a Box " + getEmptyList(boxes));
-        reader = new
-                BufferedReader(new InputStreamReader(System.in));
-        String inputStr = reader.readLine();
-
+        String lstr = getEmptyList(boxes);
+        System.out.println("Please choose a Box " + lstr);
+        String inputStr = getInputString(String.valueOf(lstr));
         int priceChoose = randomGenarator(3);
         Box boxWin = getSelectedBox(boxes, priceChoose);
         boxWin.setPrice(true);
@@ -73,11 +71,9 @@ class Runner {
         }*/
 
         if (boxHost.isHost() && boxHost.isPrice()) {
-            System.out.println("Sorry, You lost the game HOST got found the money");
-            System.out.println("Do you like to try again ?");
-            reader = new
-                    BufferedReader(new InputStreamReader(System.in));
-            inputStr = reader.readLine();
+            System.out.println("Sorry, You lost the game due to host found the money");
+            System.out.println("Do you like to try again (Y/N)?");
+            inputStr = getInputString("Y,N,y,n");
             if ("Y".equalsIgnoreCase(inputStr)) {
                 play(initBoxList());
             } else {
@@ -88,10 +84,8 @@ class Runner {
 
         String emptyBoxes = getEmptyList(boxes);
 
-        System.out.println("Do I stand a better chance to win if I change my mind switch to other box " + emptyBoxes + "?");
-        reader = new
-                BufferedReader(new InputStreamReader(System.in));
-        inputStr = reader.readLine();
+        System.out.println("Do I stand a better chance to win if I change my mind switch to other box select your choice (" + emptyBoxes + ")?");
+        inputStr = getInputString(String.valueOf(emptyBoxes));
         if ("y".equalsIgnoreCase(inputStr)) {
             showBox(userBox);
         } else {
@@ -100,16 +94,44 @@ class Runner {
             showBox(b);
         }
 
-        System.out.println("Do you like to try again ?");
-        reader = new
-                BufferedReader(new InputStreamReader(System.in));
-        inputStr = reader.readLine();
+        System.out.println("Do you like to try again (Y/N)?");
+        inputStr = getInputString("Y,N,y,n");
         if ("y".equalsIgnoreCase(inputStr)) {
             play(initBoxList());
         } else {
             System.out.println("Thank you for playing game ...");
             System.exit(0);
         }
+    }
+
+    /**
+     * Method contain Input reader and validation.
+     * @param validate
+     * @return
+     * @throws IOException
+     */
+    private String getInputString(String validate) throws IOException {
+        String inputStr;
+        reader = new
+                BufferedReader(new InputStreamReader(System.in));
+        inputStr = reader.readLine();
+        System.out.println("Your input values : " + inputStr);
+        char[] ch = new char[validate.length()];
+
+        boolean contain = false;
+        for(char c:ch){
+            //System.out.println(inputStr);
+            if(validate.contains(String.valueOf(inputStr))){
+                contain = true;
+                break;
+            }
+        }
+        if(!contain){
+            System.out.println("Invalid input try again... values "+ validate +" required");
+            inputStr = getInputString(validate);
+        }
+
+        return inputStr;
     }
 
     /**
@@ -150,7 +172,7 @@ class Runner {
     private void showBox(Box selectdBox) {
         System.out.println(selectdBox.toString());
         if (selectdBox.isUser() && selectdBox.isPrice())
-            System.out.println("Congratulation you are Win !!!!");
+            System.out.println("!!! Congratulation you are Win !!!!");
         else
             System.out.println("Sorry, You lost the game");
     }
