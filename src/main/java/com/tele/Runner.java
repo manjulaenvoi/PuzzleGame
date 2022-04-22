@@ -67,9 +67,10 @@ class Runner {
         boxHost.setHost(true);
         boxes.add(boxHost);
 
-        for (Box bc : boxes) {
+        //Display List of Boxes
+     /*   for (Box bc : boxes) {
             System.out.println(bc.toString());
-        }
+        }*/
 
         if (boxHost.isHost() && boxHost.isPrice()) {
             System.out.println("Sorry, You lost the game HOST got found the money");
@@ -111,6 +112,11 @@ class Runner {
         }
     }
 
+    /**
+     * Used to get the Unselected Boxes
+     * @param boxes
+     * @return
+     */
     private String getEmptyList(Set<Box> boxes) {
         String emptyBoxes = "";
         for (Box b : boxes) {
@@ -121,7 +127,12 @@ class Runner {
         return emptyBoxes;
     }
 
-
+    /**
+     * Used to retrive selected Box
+     * @param boxes
+     * @param selected
+     * @return
+     */
     private Box getSelectedBox(Set<Box> boxes, int selected) {
         for (Box b : boxes) {
             if (b.getCount() == selected) {
