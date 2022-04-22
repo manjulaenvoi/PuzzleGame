@@ -59,26 +59,18 @@ class Runner {
             hostSelection = randomGenarator(3);
         }
 
-        Box boxHost = getSelectedBox(boxes, hostSelection);
-        boxHost.setHost(true);
-        boxes.add(boxHost);
-
-        //Display List of Boxes
-     /*   for (Box bc : boxes) {
-            System.out.println(bc.toString());
-        }*/
-
-        if (boxHost.isHost() && boxHost.isPrice()) {
-            System.out.println("Sorry, You lost the game due to host found the money");
-            System.out.println("Do you like to try again (Y/N)?");
-            inputStr = getInputString("Y,N,y,n");
-            if ("Y".equalsIgnoreCase(inputStr)) {
-                play(initBoxList());
-            } else {
-                System.out.println("Thank you for playing game ...");
-                System.exit(0);
+        ;
+        for(Box bo :boxes){
+            if(!bo.isPrice() && !bo.isUser()){
+                bo.setHost(true);
+                boxes.add(bo);
+                System.out.println("Host picked Empty box "+ bo.getCount());
+                break;
             }
         }
+
+        //Display List of Boxes
+        //showBoxes(boxes);
 
         String emptyBoxes = getEmptyList(boxes);
 
@@ -168,7 +160,7 @@ class Runner {
      * @param selectdBox
      */
     private void showBox(Box selectdBox) {
-        System.out.println(selectdBox.toString());
+        //System.out.println(selectdBox.toString());
         if (selectdBox.isUser() && selectdBox.isPrice())
             System.out.println("!!! Congratulation you are Win !!!!");
         else
@@ -185,5 +177,9 @@ class Runner {
         Random generator = new Random();
         int winbox = generator.nextInt();
         return (1 + Math.abs(winbox) % count);
+    }
+
+    private void showBoxes(Set<Box> setOfBoxes){
+        setOfBoxes.stream().forEach(System.out::println);
     }
 }
