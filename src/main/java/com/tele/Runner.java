@@ -8,7 +8,7 @@ import java.util.Random;
 import java.util.Set;
 
 /**
- * Class is used to smulate random win box Puzele game.
+ * Class is used to simulate random win box puzzle game.
  */
 class Runner {
 
