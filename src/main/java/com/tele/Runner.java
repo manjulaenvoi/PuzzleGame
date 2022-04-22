@@ -3,9 +3,7 @@ package com.tele;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Class is used to simulate random win box puzzle game.
@@ -27,7 +25,7 @@ class Runner {
      * @return
      */
     private Set<Box> initBoxList() {
-        Set<Box> b = new HashSet<>();
+        Set<Box> b = new LinkedHashSet<>();
         for (int i = 1; i < (countOfBoxes + 1); i++) {
             b.add(new Box(false, false, false, i));
         }
