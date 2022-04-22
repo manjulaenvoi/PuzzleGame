@@ -14,6 +14,7 @@ class Runner {
     private static BufferedReader reader;
 
     public static void main(String[] args) throws IOException {
+        System.out.println("Welcome to Monty Hall problem - Puzzle");
         Runner runner = new Runner();
         Set<Box> boxes = runner.initBoxList();
         runner.play(boxes);
@@ -164,7 +165,7 @@ class Runner {
         if (selectdBox.isUser() && selectdBox.isPrice())
             System.out.println("!!! Congratulation you are Win !!!!");
         else
-            System.out.println("Sorry, You lost the game");
+            System.out.println("Sorry, You lost the Money ... ");
     }
 
     /**
